@@ -1,0 +1,28 @@
+<header class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="brand">
+			Requisição de transporte
+			<% if current_user %>
+				&nbsp;|&nbsp;<%= current_user.nome %>
+			<% end %>
+		</div>
+		<ul class="nav pull-right">
+			<% if current_user %>
+				<li><%= link_to "Tranporte material", '#' %></li>
+				<li><%= link_to "Tranporte pessoal", '#' %></li>
+				<% if current_user.admin %>
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						Definições<b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Utilizadores", users_path %></li>
+						</ul>
+					</li>
+				<% end %>
+				<li><%= link_to "Sair", logout_path %></li>
+			<% end %>
+		</ul>
+
+	</div>
+</header>

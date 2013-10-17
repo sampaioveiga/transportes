@@ -1,4 +1,11 @@
 Transportes::Application.routes.draw do
+  resources :users,     except: [ :destroy ]
+  resources :sessions,  except: [ :show, :edit, :update ]
+  match '/signin',  to: 'users#new',        via: 'get'
+  match '/login',   to: 'sessions#new',     via: 'get'
+  match '/logout',  to: 'sessions#destroy', via: 'get'
+  root 'users#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,10 @@
+<% provide(:title, @user.nome) %>
+
+<h1><%= @user.nome %></h1>
+<div class="span8 offset2">
+	<ul>
+		<li><%= link_to "Editar", edit_user_path(@user) %>
+		<li>Show req. made</li>
+		<li>edit profile</li>
+	</ul>
+</div>

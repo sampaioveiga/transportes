@@ -1,0 +1,17 @@
+<% provide(:title, "Entrar") %>
+
+<h1>Entrar</h1>
+<div class="span6 offset3">
+	<%= form_tag sessions_path do %>
+		<fieldset>
+			<%= label_tag :numero_mecanografico, "Numero mecanográfico" %>
+			<%= text_field_tag :numero_mecanografico, params[:numero_mecanografico] %>
+			<%= label_tag :password %>
+			<%= password_field_tag :password %>
+		</fieldset>
+		<div class="actions">
+			<%= submit_tag "Entrar", class: 'btn btn-primary' %>
+			Se ainda não tem acesso, faça o <%= link_to "registo", signin_path %>.
+		</div>
+	<% end %>
+</div>
