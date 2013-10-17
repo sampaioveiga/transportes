@@ -1,10 +1,22 @@
 <% provide(:title, @user.nome) %>
 
-<h1><%= @user.nome %></h1>
-<div class="span8 offset2">
+<h1><%= link_to @user.nome, edit_user_path(@user) %></h1>
+<div class="span3 well">
+	<dl>
+		<dt>N. mecanográfico</dt>
+		<dd><%= @user.numero_mecanografico %></dd>
+		<dt>E-mail</dt>
+		<dd><%= @user.email %></dd>
+		<dt>Contacto</dt>
+		<dd><%= @user.contacto %></dd>
+		<dt>Serviço</dt>
+		<dd><%= @user.service.nome %></dd>
+		<dt>Unidade</dt>
+		<dd><%= @user.ulsneunit.nome %></dd>
+	</dl>
+</div>
+<div class="span8 well">
 	<ul>
-		<li><%= link_to "Editar", edit_user_path(@user) %>
 		<li>Show req. made</li>
-		<li>edit profile</li>
 	</ul>
 </div>

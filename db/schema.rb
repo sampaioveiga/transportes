@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016092027) do
+ActiveRecord::Schema.define(version: 20131017135417) do
+
+  create_table "services", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ulsneunits", force: true do |t|
+    t.string   "nome"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "nome"
@@ -23,9 +35,13 @@ ActiveRecord::Schema.define(version: 20131016092027) do
     t.string   "password_digest"
     t.boolean  "auth",                 default: false
     t.boolean  "admin",                default: false
+    t.integer  "ulsneunit_id"
+    t.integer  "service_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["numero_mecanografico"], name: "index_users_on_numero_mecanografico", unique: true
+  add_index "users", ["service_id"], name: "index_users_on_service_id"
+  add_index "users", ["ulsneunit_id"], name: "index_users_on_ulsneunit_id"
 
 end

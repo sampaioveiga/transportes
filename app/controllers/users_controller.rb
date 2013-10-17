@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [ :update ]
-	before_action :require_login, except: [ :new ]
+	before_action :require_login, except: [ :new, :create ]
 	before_action :require_admin, only: [ :index ]
 	before_action :correct_user, only: [ :show, :edit, :update ]
 
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 		end
 
 		def user_params
-			params.require(:user).permit(:nome, :numero_mecanografico, :email, :contacto, :password, :password_confirmation, :auth, :admin)
+			params.require(:user).permit(:nome, :numero_mecanografico, :email, :contacto, :ulsneunit_id, :service_id, :password, :password_confirmation, :auth, :admin)
 		end
 
 		def require_login

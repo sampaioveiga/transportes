@@ -1,0 +1,22 @@
+<% provide(:title, "Serviços") %>
+
+<h1>Serviços</h1>
+<div class="span6 offset3">
+	<div class="actions">
+		<%= link_to "Novo serviço", new_service_path, class: 'btn btn-primary' %>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nome</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @services.each do |service| %>
+				<tr>
+					<td><%= link_to service.nome, edit_service_path(service) %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

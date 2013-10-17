@@ -1,0 +1,22 @@
+<% provide(:title, "Unidades ULSNE") %>
+
+<h1>Unidades ULSNE</h1>
+<div class="span6 offset3">
+	<div class="actions">
+		<%= link_to "Nova unidade", new_ulsneunit_path, class: 'btn btn-primary' %>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nome</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @ulsneunits.each do |ulsneunit| %>
+				<tr>
+					<td><%= link_to ulsneunit.nome, edit_ulsneunit_path(ulsneunit) %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

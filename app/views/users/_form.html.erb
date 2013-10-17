@@ -1,0 +1,44 @@
+<%= form_for @user do |f| %>
+	<% if @user.errors.any? %>
+		<div class="error_explanation">
+			<h2><%= pluralize(@user.errors.count, "erro") %> impediram este utilizador de ser guardado</h2>
+			<ul>
+				<% for message in @user.errors.full_messages %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<fieldset>
+		<%= f.label :nome %>
+		<%= f.text_field :nome %>
+		<%= f.label :numero_mecanografico, "Numero mecanográfico" %>
+		<%= f.text_field :numero_mecanografico %>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+		<%= f.label :contacto %>
+		<%= f.text_field :contacto %>
+		<%= f.label :service_id, "Serviço" %>
+		<%= f.select :service_id, Service.order('nome').collect { |u| [ u.nome, u.id ] }, { include_blank: true } %>
+		<%= f.label :ulsneunit_id, "Unidade" %>
+		<%= f.select :ulsneunit_id, Ulsneunit.order('nome').collect { |u| [ u.nome, u.id ] }, { include_blank: true } %>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+		<%= f.label :password_confirmation, "Confirmação" %>
+		<%= f.password_field :password_confirmation %>
+	</fieldset>
+	<% unless current_user.nil? %>
+		<% if current_user.admin %>
+			<div class="well">
+				<%= f.label :auth, "Autorizado", class: 'checkbox inline' %>
+				<%= f.check_box :auth %>
+				<%= f.label :admin, "Administração", class: 'checkbox inline' %>
+				<%= f.check_box :admin %>
+			</div>
+		<% end %>
+	<% end %>
+	<div class="actions">
+		<%= f.submit "Guardar", class: 'btn btn-success' %>
+		<%= link_to "Cancelar", users_path, class: 'btn' %>
+	</div>
+<% end %>

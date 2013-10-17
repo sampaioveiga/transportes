@@ -9,19 +9,15 @@
 				<th>N. mecanográfico</th>
 				<th>E-mail</th>
 				<th>Autorizado</th>
-				<th>Admin</th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @users.each do |user| %>
 				<tr>
-					<td><%= user.nome %></td>
+					<td><%= link_to user.nome, user_path(user), class: 'btn btn-link' %></td>
 					<td><%= user.numero_mecanografico %></td>
 					<td><%= user.email %></td>
-					<td><%= user.auth %></td>
 					<td><%= user.admin %></td>
-					<td><%= link_to "Editar", edit_user_path(user), class: 'btn btn-link' %></td>
 				</tr>
 			<% end %>
 		</tbody>

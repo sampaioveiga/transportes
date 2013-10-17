@@ -1,0 +1,20 @@
+<%= form_for @ulsneunit do |f| %>
+	<% if @ulsneunit.errors.any? %>
+		<div class="error_explanation">
+			<h2><%= pluralize(@ulsneunit.errors.count, "erro") %> impediram esta unidade de ser guardada</h2>
+			<ul>
+				<% for message in @ulsneunit.errors.full_messages %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<fieldset>
+		<%= f.label :nome %>
+		<%= f.text_field :nome %>
+	</fieldset>
+	<div class="actions">
+		<%= f.submit "Guardar", class: 'btn btn-success' %>
+		<%= link_to "Cancelar", ulsneunits_path, class: 'btn' %>
+	</div>
+<% end %>
