@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 	belongs_to	:ulsneunit
 	belongs_to	:service
 	has_many	:bosses, through: :services
+	has_many	:reqmaterials
 	before_save { self.email = email.downcase }
 	has_secure_password
 	#self.per_page = 2
