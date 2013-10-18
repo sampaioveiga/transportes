@@ -1,0 +1,14 @@
+<%= form_for([@service, @service.bosses.build]) do |f| %>
+	<fieldset>
+		<%= f.label :user_id, "Pessoa" %>
+		<%= f.select :user_id, User.order('nome').collect { |p| [ p.nome, p.id ] }, { include_blank: true } %>
+		<%= f.label :title %>
+		<%= f.select :title, [ "Chefe", "Responsável" ], { include_blank: true } %>
+		<%= f.label :unidade_id %>
+		<%= f.select :ulsneunit_id, Ulsneunit.order('nome').collect { |p| [ p.nome, p.id ] }, { include_blank: true } %>
+	</fieldset>
+	<div class="actions">
+		<%= f.submit "Novo", class: 'btn btn-success' %>
+		<%= link_to "Voltar", services_path, class: 'btn btn-link' %>
+	</div>
+<% end %>

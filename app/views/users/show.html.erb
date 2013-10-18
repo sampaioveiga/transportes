@@ -14,6 +14,9 @@
 		<dt>Unidade</dt>
 		<dd><%= @user.ulsneunit.nome %></dd>
 	</dl>
+	<% if current_user.admin %>
+		<%= link_to "Voltar", users_path, class: 'btn btn-link' %>
+	<% end %>
 </div>
 <div class="span8 well">
 	<ul>

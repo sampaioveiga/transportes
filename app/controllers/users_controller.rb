@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	before_action :correct_user, only: [ :show, :edit, :update ]
 
 	def index
-		@users = User.order('nome')
+		@users = User.paginate(page: params[:page]).order('nome')
 	end
 
 	def show
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		set_first_user
 		if @user.save
-			flash[:alert] = "Utilizador criado. Tem de aguardar autorização"
+			flash[:alert] = "Utilizador criado. A aguardar autorização"
 			redirect_to login_path
 		else
 			render 'new'
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
 	def update
 		if @user.update(user_params)
-			flash[:success] = "Utilizador atualizado"
+			flash[:success] = "Utilizador #{@user.nome} atualizado"
 			redirect_to users_path
 		else
 			render 'edit'

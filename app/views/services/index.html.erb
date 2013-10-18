@@ -1,22 +1,45 @@
 <% provide(:title, "Serviços") %>
 
 <h1>Serviços</h1>
-<div class="span6 offset3">
+<div class="span8 offset2">
 	<div class="actions">
 		<%= link_to "Novo serviço", new_service_path, class: 'btn btn-primary' %>
 	</div>
+	<%= will_paginate %>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Nome</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @services.each do |service| %>
 				<tr>
-					<td><%= link_to service.nome, edit_service_path(service) %></td>
+					<td><%= link_to service.nome, service_path(service) %></td>
+					<td>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Nome</th>
+									<th>Posto</th>
+									<th>Unidade</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% service.bosses.each do |boss| %>
+									<tr>
+										<td><%= boss.user.nome %></td>
+										<td><%= boss.title %></td>
+										<td><%= boss.ulsneunit.nome %></td>
+									</tr>
+								<% end %>
+							</tbody>
+						</table>
+					</td>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
+	<%= will_paginate %>
 </div>

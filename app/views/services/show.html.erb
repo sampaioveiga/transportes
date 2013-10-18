@@ -1,0 +1,14 @@
+<% provide(:title, @service.nome) %>
+
+<h1><%= link_to @service.nome, edit_service_path(@service) %></h1>
+<div class="span10 offset1">
+	<div class="row-fluid">
+		<div class="span8">
+			<%= render 'bosses/show' %>
+		</div>
+		<div class="span4">
+			<h2>Nova chefia</h2>
+			<%= render 'bosses/new' %>
+		</div>
+	</div>
+</div>

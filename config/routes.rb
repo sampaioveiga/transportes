@@ -1,6 +1,8 @@
 Transportes::Application.routes.draw do
-  resources :services,    except: [ :show ]
-  resources :ulsneunits,  except: [ :show ]
+  resources :services,    except: [ :destroy ] do
+    resources :bosses,      except: [ :show ]
+  end
+  resources :ulsneunits,  except: [ :show, :destroy ]
   resources :users,       except: [ :destroy ]
   resources :sessions,    except: [ :show, :edit, :update ]
   match '/signin',  to: 'users#new',        via: 'get'
