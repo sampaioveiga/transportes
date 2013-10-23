@@ -1,0 +1,25 @@
+<% provide(:title, @reqmaterial.assunto) %>
+
+<h1><%= @reqmaterial.assunto %></h1>
+<div class="span6 offset3">
+	<dl class="dl-horizontal">
+		<dt>Requisitante</dt>
+		<dd><%= @reqmaterial.user.nome %></dd>
+		<dt>Serviço</dt>
+		<dd><%= @reqmaterial.user.service.nome %></dd>
+		<dt>Local de partida</dt>
+		<dd><%= @reqmaterial.local_partida %></dd>
+		<dt>Local de entrega</dt>
+		<dd><%= @reqmaterial.local_entrega %></dd>
+		<dt>Data de entrega</dt>
+		<dd><%= @reqmaterial.data_entrega %></dd>
+		<dt>Urgente?</dt>
+		<dd><%= @reqmaterial.urgente %></dd>
+		<dt>Observações</dt>
+		<dd><%= @reqmaterial.observacoes %>&nbsp;</dd>
+	</dl>
+	<%= link_to "Editar", edit_user_reqmaterial_path(@user, @reqmaterial), class: 'btn btn-primary' %>
+	<%= link_to "Cancelar", @user, class: 'btn' %>
+</div>
+<% if current_user.admin? %>
+<% end %>

@@ -1,0 +1,60 @@
+<%= form_for([@user, @reqmaterial]) do |f| %>
+	<% if @reqmaterial.errors.any? %>
+		<div class="error_explanation">
+			<h2>O formulário contém <%= pluralize(@reqmaterial.errors.count, "erro") %></h2>
+			<ul>
+				<% for message in @reqmaterial.errors.full_messages %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<div class="row-fluid">
+		<div class="span3">
+			<fieldset>
+				<%= f.label :user_id, "Requisitante" %>
+				<%= text_field_tag current_user, current_user.nome, readonly: true %>
+				<%= f.text_field :user_id, style: 'display: none' %>
+				<%= f.label :servico %>
+				<%= text_field_tag current_user, current_user.service.nome, readonly: true %>
+				<%= f.label :ulsneunit, "Unidade" %>
+				<%= text_field_tag current_user, current_user.ulsneunit.nome, readonly: true %>
+				<%= f.label :boss_id, "Chefia" %>
+				<%= f.select :boss_id, current_user.service.bosses.collect { |b| [b.user.nome, b.user.id] }, { prompt: "Seleccione:"}, { class: 'input-medium' } %>
+			</fieldset>
+		</div>
+		<div class="span9">
+			<fieldset>
+				<%= f.label :assunto %>
+				<%= f.text_field :assunto %>
+				<%= f.label :local_partida %>
+				<%= f.text_field :local_partida %>
+				<%= f.label :local_entrega %>
+				<%= f.text_field :local_entrega %>
+				<div id="datetimepicker" class="input-append date">
+					<%= f.label :data_entrega %>
+					<%= f.text_field :data_entrega %>
+					<span class="add-on">
+      					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+    				</span>
+				</div>
+				<%= f.label :urgente %>
+				<%= f.check_box :urgente %>
+				<%= f.label :observacoes %>
+				<%= f.text_area :observacoes %>
+			</fieldset>
+			<div class="actions">
+				<%= f.submit "Submeter", class: 'btn btn-success' %>
+				<%= link_to "Cancelar", user_path(current_user), class: 'btn' %>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#datetimepicker').datetimepicker({
+			format: 'yyyy-MM-dd hh:mm'
+		});
+	});
+</script>

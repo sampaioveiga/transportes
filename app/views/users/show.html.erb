@@ -19,7 +19,6 @@
 	<% end %>
 </div>
 <div class="span8 well">
-	<ul>
-		<li>Show req. made</li>
-	</ul>
+	<h2>Requisições transporte de material <small><%= link_to "ver todas", user_reqmaterials_path(@user) %></small></h2>
+	<%= render 'reqmaterials/index' %>
 </div>

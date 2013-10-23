@@ -12,6 +12,7 @@ end
 # Use SCSS for stylesheets
 gem 'sass-rails', '4.0.0'
 gem 'bootstrap-sass', '2.3.2.2'
+gem "bootstrap-datetimepicker-rails", "0.0.11"
 
 # paginate
 gem 'will_paginate', '3.0.5'

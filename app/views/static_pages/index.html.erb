@@ -1,0 +1,8 @@
+<% provide(:title, "Index") %>
+
+<h1>Viagens</h1>
+<div class="span8 offset2">
+	<% @reqmaterials.each do |reqmaterial| %>
+		<%= reqmaterial.assunto %>
+	<% end %>
+</div>
