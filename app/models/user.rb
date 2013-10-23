@@ -9,22 +9,22 @@ class User < ActiveRecord::Base
 
 	# Validations
 	validates :nome,
-		presence: true
+		presence: { message: "não pode ser nulo" }
 	validates :numero_mecanografico,
-		presence: true,
-		length: { is: 5 },
-		uniqueness: true
+		presence: { message: "não pode ser nulo" },
+		length: { is: 5, message: "tem de possuir 5 números" },
+		uniqueness: { message: "já existe na base de dados" }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email,
-		presence: true,
-		uniqueness: { case_sensitive: false },
-		format: { with: VALID_EMAIL_REGEX }
+		presence: { message: "não pode ser nulo" },
+		uniqueness: { case_sensitive: false, message: "já existe na base de dados" },
+		format: { with: VALID_EMAIL_REGEX, message: "formato inválido" }
 	validates :service_id,
-		presence: true
+		presence: { message: "não pode ser nulo" }
 	validates :ulsneunit_id,
-		presence: true
+		presence: { message: "não pode ser nulo" }
 	validates :password,
-		presence: true,
+		presence: { message: "não pode ser nulo" },
 		on: :create,
-		length: { minimum: 5 }
+		length: { minimum: 5, message: "tem de conter mais de 5 caracteres" }
 end

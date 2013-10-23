@@ -1,0 +1,25 @@
+<% provide(:title, "Requisições #{@user.nome}") %>
+
+<h1>Requisições <%= link_to @user.nome, user_path(@user) %></h1>
+<div class="span8 offset2">
+	<%= will_paginate %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Assunto</th>
+				<th>Local entrega</th>
+				<th>Data entrega</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @reqmaterials.each do |reqmaterial| %>
+			<tr>
+				<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(@user, reqmaterial) %></td>
+				<td><%= reqmaterial.local_entrega %></td>
+				<td><%= reqmaterial.data_entrega %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= will_paginate %>
+</div>

@@ -5,5 +5,5 @@ class Service < ActiveRecord::Base
 	
 	# Validations
 	validates :nome,
-		presence: true
+		presence: { message: "não pode ser nulo" }
 end

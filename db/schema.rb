@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131018130749) do
+ActiveRecord::Schema.define(version: 20131023082407) do
 
   create_table "bosses", force: true do |t|
     t.integer  "service_id"

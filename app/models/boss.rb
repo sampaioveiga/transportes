@@ -6,11 +6,11 @@ class Boss < ActiveRecord::Base
 
 	# Validations
 	validates :service_id,
-		presence: true
+		presence: { message: "não pode ser nulo" }
 	validates :title,
-		presence: true
+		presence: { message: "não pode ser nulo" }
 	validates :user_id,
-		presence: true
+		presence: { message: "não pode ser nulo" }
 	validates :ulsneunit_id,
-		presence: true
+		presence: { message: "não pode ser nulo" }
 end

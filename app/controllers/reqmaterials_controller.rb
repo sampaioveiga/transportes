@@ -1,18 +1,65 @@
 class ReqmaterialsController < ApplicationController
+	before_action :correct_user
+	before_action :set_reqmaterial, except: [ :index, :new, :create ]
+
 	def index
+		@user = User.find(params[:user_id])
+		@reqmaterials = @user.reqmaterials.paginate(page: params[:page]).order('data_entrega DESC')
 	end
 
 	def show
 	end
 
 	def new
+		@reqmaterial ||= @user.reqmaterials.new
+		@reqmaterial.user_id ||= current_user.id
+		@reqmaterial.local_partida ||= current_user.ulsneunit.nome
+		@reqmaterial.data_entrega ||= Time.now.tomorrow
 	end
 
 	def create
+		@reqmaterial = @user.reqmaterials.new(reqmaterials_params)
+		if @reqmaterial.save
+			flash[:alert] = "Requisição submetida. A aguardar validação"
+			redirect_to [@user, @reqmaterial]
+		else
+			render 'new'
+		end
+	end
+
+	def edit
+		if @reqmaterial.data_entrega.past? && !current_user.admin?
+			flash[:error] = "Esta requisição já não pode ser alterada"
+			redirect_to user_reqmaterial_path(@user, @reqmaterial)
+		end
+		unless current_user.admin
+			@reqmaterial.status = "Pendente"
+		end
+	end
+
+	def update
+		if @reqmaterial.update(reqmaterials_params)
+			flash[:success] = "Requisição atualizada."
+			redirect_to [@user, @reqmaterial]
+		else
+			render 'edit'
+		end
 	end
 
 	private
 		def reqmaterials_params
 			params.require(:reqmaterial).permit(:assunto, :local_partida, :local_entrega, :data_entrega, :urgente, :observacoes, :user_id, :boss_id)
 		end
+
+		def set_reqmaterial
+			@reqmaterial = @user.reqmaterials.find(params[:id])
+		end
+
+		def correct_user
+			unless current_user.admin?
+				@user = User.find(current_user.id)
+			else
+				@user = User.find(params[:user_id])
+			end
+    	end
 end

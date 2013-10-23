@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		@reqmaterials = @user.reqmaterials.order('id DESC').limit(10)
 	end
 
 	def new
