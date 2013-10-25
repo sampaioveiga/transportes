@@ -1,0 +1,12 @@
+<% if current_user.admin? %>
+	<div class="well well-small">
+		<legend>Validação</legend>
+		<%= form_tag user_validate_path do %>
+			<%= select_tag :estado, options_for_select([["Pendente", "Pendente"], ["Aprovado", "Aprovado"], ["Recusado","Recusado"]], @reqmaterial.estado) %>
+			<%= text_area_tag :comentario, @reqmaterial.comentario, class: 'span11' %>
+			<div class="actions">
+				<%= submit_tag "Validar", class: 'btn btn-info' %>
+			</div>
+		<% end %>
+	</div>
+<% end %>

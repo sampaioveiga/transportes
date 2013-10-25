@@ -17,9 +17,11 @@
 		<dd><%= @reqmaterial.urgente %></dd>
 		<dt>Observações</dt>
 		<dd><%= @reqmaterial.observacoes %>&nbsp;</dd>
+		<dt>Estado</dt>
+		<dd><%= @reqmaterial.estado %>&nbsp;</dd>
+		<dt>Comentário</dt>
+		<dd><%= @reqmaterial.comentario %>&nbsp;</dd>
 	</dl>
 	<%= link_to "Editar", edit_user_reqmaterial_path(@user, @reqmaterial), class: 'btn btn-primary' %>
 	<%= link_to "Cancelar", @user, class: 'btn' %>
 </div>
-<% if current_user.admin? %>
-<% end %>

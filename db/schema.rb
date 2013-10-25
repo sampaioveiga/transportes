@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131023082407) do
+ActiveRecord::Schema.define(version: 20131025075754) do
 
   create_table "bosses", force: true do |t|
     t.integer  "service_id"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20131023082407) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "boss_id"
+    t.string   "estado"
+    t.string   "comentario"
   end
 
   add_index "reqmaterials", ["user_id"], name: "index_reqmaterials_on_user_id"

@@ -1,6 +1,7 @@
 class ReqmaterialsController < ApplicationController
 	before_action :correct_user
 	before_action :set_reqmaterial, except: [ :index, :new, :create ]
+	before_action :require_admin, only: [ :validate ]
 
 	def index
 		@user = User.find(params[:user_id])
@@ -15,6 +16,7 @@ class ReqmaterialsController < ApplicationController
 		@reqmaterial.user_id ||= current_user.id
 		@reqmaterial.local_partida ||= current_user.ulsneunit.nome
 		@reqmaterial.data_entrega ||= Time.now.tomorrow
+		@reqmaterial.estado ||= "Pendente"
 	end
 
 	def create
@@ -32,9 +34,6 @@ class ReqmaterialsController < ApplicationController
 			flash[:error] = "Esta requisição já não pode ser alterada"
 			redirect_to user_reqmaterial_path(@user, @reqmaterial)
 		end
-		unless current_user.admin
-			@reqmaterial.status = "Pendente"
-		end
 	end
 
 	def update
@@ -46,9 +45,17 @@ class ReqmaterialsController < ApplicationController
 		end
 	end
 
+	def validate
+		@reqmaterial.update_attribute(:estado, params[:estado])
+		@reqmaterial.update_attribute(:comentario, params[:comentario])
+		flash[:success] = "Validação efectuada"
+		redirect_to user_reqmaterial_path(@user, @reqmaterial)
+	end
+
+
 	private
 		def reqmaterials_params
-			params.require(:reqmaterial).permit(:assunto, :local_partida, :local_entrega, :data_entrega, :urgente, :observacoes, :user_id, :boss_id)
+			params.require(:reqmaterial).permit(:assunto, :local_partida, :local_entrega, :data_entrega, :urgente, :observacoes, :user_id, :boss_id, :estado)
 		end
 
 		def set_reqmaterial
@@ -62,4 +69,10 @@ class ReqmaterialsController < ApplicationController
 				@user = User.find(params[:user_id])
 			end
     	end
+
+    	def require_admin
+			unless current_user.admin 
+				redirect_to user_path(current_user)
+			end
+		end
 end

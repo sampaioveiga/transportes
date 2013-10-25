@@ -9,6 +9,8 @@
 				<th>Assunto</th>
 				<th>Local entrega</th>
 				<th>Data entrega</th>
+				<th>Validação</th>
+				<th>Comentário</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -17,6 +19,8 @@
 				<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(@user, reqmaterial) %></td>
 				<td><%= reqmaterial.local_entrega %></td>
 				<td><%= reqmaterial.data_entrega %></td>
+				<td><%= reqmaterial.estado %></td>
+				<td><%= reqmaterial.comentario %></td>
 			</tr>
 			<% end %>
 		</tbody>

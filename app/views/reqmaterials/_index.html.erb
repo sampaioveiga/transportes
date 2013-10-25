@@ -4,15 +4,17 @@
 			<th>Assunto</th>
 			<th>Local entrega</th>
 			<th>Data entrega</th>
+			<th>Estado</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @user.reqmaterials.each do |reqmaterial| %>
-		<tr>
-			<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(@user, reqmaterial) %></td>
-			<td><%= reqmaterial.local_entrega %></td>
-			<td><%= reqmaterial.data_entrega %></td>
-		</tr>
+			<tr>
+				<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(@user, reqmaterial) %></td>
+				<td><%= reqmaterial.local_entrega %></td>
+				<td><%= reqmaterial.data_entrega %></td>
+				<td><%= reqmaterial.estado %></td>
+			</tr>
 		<% end %>
 	</tbody>
 </table>

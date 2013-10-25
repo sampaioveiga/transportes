@@ -4,10 +4,12 @@ Transportes::Application.routes.draw do
   end
   resources :ulsneunits,  except: [ :show, :destroy ]
   resources :users,       except: [ :destroy ] do
-    resources :reqmaterials 
+    resources :reqmaterials
+    post '/reqmaterials/:id/validate' => 'reqmaterials#validate', as: :validate
+    #get '/reqmaterials/:id/save_validate' => 'reqmaterials#save_validate', as: :save_validate
   end
   resources :sessions,    except: [ :show, :edit, :update ]
-  get "static_pages/index"
+  get 'static_pages/index' => 'static_pages#index'
   match '/signin',  to: 'users#new',        via: 'get'
   match '/login',   to: 'sessions#new',     via: 'get'
   match '/logout',  to: 'sessions#destroy', via: 'get'
