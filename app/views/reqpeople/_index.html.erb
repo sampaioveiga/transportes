@@ -1,0 +1,28 @@
+<table class="table .table-condensed">
+	<thead>
+		<tr>
+			<th>Assunto</th>
+			<th>Local destino</th>
+			<th>Data partida</th>
+			<th>Data retorno</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @user.reqpeople.each do |reqperson| %>
+			<% case reqperson.estado %>
+				<% when 1 %>
+					<% estado = "success" %>
+				<% when 2 %>
+					<% estado = "danger" %>
+				<% else %>
+					<% estado = "warning" %>
+			<% end %>
+			<tr class=<%= estado %>>
+				<td><%= link_to reqperson.assunto, user_reqperson_path(@user, reqperson) %></td>
+				<td><%= reqperson.local_destino %></td>
+				<td><%= reqperson.data_partida %></td>
+				<td><%= reqperson.data_retorno %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

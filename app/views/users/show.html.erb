@@ -1,24 +1,32 @@
 <% provide(:title, @user.nome) %>
 
-<h1><%= link_to @user.nome, edit_user_path(@user) %></h1>
-<div class="span3 well">
-	<dl>
+<div class="span4 offset2">
+	<h1><%= link_to @user.nome, edit_user_path(@user) %></h1>
+	<% if current_user.admin %>
+		<%= link_to "Voltar", users_path, class: 'btn' %>
+	<% end %>
+</div>
+<div class="span4">
+	<dl class="dl-horizontal">
 		<dt>N. mecanográfico</dt>
 		<dd><%= @user.numero_mecanografico %></dd>
 		<dt>E-mail</dt>
 		<dd><%= @user.email %></dd>
 		<dt>Contacto</dt>
-		<dd><%= @user.contacto %></dd>
+		<dd><%= @user.contacto %>&nbsp;</dd>
 		<dt>Serviço</dt>
 		<dd><%= @user.service.nome %></dd>
 		<dt>Unidade</dt>
 		<dd><%= @user.ulsneunit.nome %></dd>
 	</dl>
-	<% if current_user.admin %>
-		<%= link_to "Voltar", users_path, class: 'btn btn-link' %>
-	<% end %>
 </div>
-<div class="span8 well">
-	<h2>Requisições transporte de material <small><%= link_to "ver todas", user_reqmaterials_path(@user) %></small></h2>
-	<%= render 'reqmaterials/index' %>
+<div class="row-fluid">
+	<div class="span6 well">
+		<h2>Requisições transporte de material <small><%= link_to "ver todas", user_reqmaterials_path(@user) %></small></h2>
+		<%= render 'reqmaterials/index' %>
+	</div>
+	<div class="span6 well">
+		<h2>Requisições transporte de pessoal <small><%= link_to "ver todas", user_reqpeople_path(@user) %></small></h2>
+		<%= render 'reqpeople/index' %>
+	</div>
 </div>

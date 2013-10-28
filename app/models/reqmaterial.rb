@@ -17,9 +17,11 @@ class Reqmaterial < ActiveRecord::Base
 	validate :data_entrega_cannot_be_within_3_hours
 	
 	def data_entrega_cannot_be_within_3_hours
-		data_entrega_limit = Time.now + 3.hours
-		if data_entrega.present? && data_entrega < data_entrega_limit
-			errors.add(:data_entrega, "não pode ser anterior a #{data_entrega_limit}")
+		unless user.admin?
+			data_entrega_limit = Time.now + 3.hours
+			if data_entrega.present? && data_entrega < data_entrega_limit
+				errors.add(:data_entrega, "não pode ser anterior a #{data_entrega_limit}")
+			end
 		end
 	end
 end

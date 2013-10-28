@@ -12,11 +12,11 @@ class ReqmaterialsController < ApplicationController
 	end
 
 	def new
-		@reqmaterial ||= @user.reqmaterials.new
+		@reqmaterial = @user.reqmaterials.new
 		@reqmaterial.user_id ||= current_user.id
 		@reqmaterial.local_partida ||= current_user.ulsneunit.nome
 		@reqmaterial.data_entrega ||= Time.now.tomorrow
-		@reqmaterial.estado ||= "Pendente"
+		@reqmaterial.estado ||= 0
 	end
 
 	def create

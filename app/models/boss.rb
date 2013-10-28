@@ -3,6 +3,7 @@ class Boss < ActiveRecord::Base
 	belongs_to	:user
 	belongs_to	:ulsneunit
 	has_many	:reqmaterials
+	has_many	:reqpeople
 
 	# Validations
 	validates :service_id,

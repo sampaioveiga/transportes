@@ -1,0 +1,69 @@
+<%= form_for([@user, @reqperson]) do |f| %>
+	<% if @reqperson.errors.any? %>
+		<div class="error_explanation">
+			<h2>O formulário contém <%= pluralize(@reqperson.errors.count, "erro") %></h2>
+			<ul>
+				<% for message in @reqperson.errors.full_messages %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+	<div class="row-fluid">
+		<div class="span4">
+			<fieldset>
+				<%= text_field_tag current_user, current_user.nome, readonly: true, class: 'span11' %>
+				<%= f.text_field :user_id, style: 'display: none', readonly: true, class: 'span11' %>
+				<%= text_field_tag current_user, current_user.service.nome, readonly: true, class: 'span11' %>
+				<%= text_field_tag current_user, current_user.ulsneunit.nome, readonly: true, class: 'span11' %>
+				<%= f.label :boss_id, "Chefia" %>
+				<%= f.select :boss_id, current_user.service.bosses.collect { |b| [b.user.nome, b.user.id] }, { prompt: "Seleccione:"}, { class: 'input-medium' } %>
+				<%= f.text_field :estado, style: 'display: none', readonly: true, class: 'span11' %>
+			</fieldset>
+		</div>
+		<div class="span8">
+			<fieldset>
+				<%= f.label :assunto %>
+				<%= f.text_field :assunto %>
+				<%= f.label :local_destino %>
+				<%= f.text_field :local_destino %>
+				<%= f.label :condutor %>
+				<%= f.text_field :condutor %>
+				<%= f.label :numero_passageiros %>
+				<%= f.text_field :numero_passageiros, class: 'span2' %>
+				<%= f.label :local_partida %>
+				<%= f.text_field :local_partida %>
+				<div class="input-append date datetimepicker">
+					<%= f.label :data_partida %>
+					<%= f.text_field :data_partida %>
+					<span class="add-on">
+      					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+    				</span>
+				</div>
+				<%= f.label :local_retorno %>
+				<%= f.text_field :local_retorno %>
+				<div class="input-append date datetimepicker">
+					<%= f.label :data_retorno %>
+					<%= f.text_field :data_retorno %>
+					<span class="add-on">
+      					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+    				</span>
+				</div>
+				<%= f.label :observacoes %>
+				<%= f.text_area :observacoes %>
+			</fieldset>
+			<div class="actions">
+				<%= f.submit "Submeter", class: 'btn btn-success' %>
+				<%= link_to "Cancelar", user_reqperson_path(@user, @reqperson), class: 'btn' %>
+			</div>
+		</div>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.datetimepicker').datetimepicker({
+			format: 'yyyy-MM-dd hh:mm'
+		});
+	});
+</script>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131025075754) do
+ActiveRecord::Schema.define(version: 20131028122805) do
 
   create_table "bosses", force: true do |t|
     t.integer  "service_id"
@@ -33,11 +33,32 @@ ActiveRecord::Schema.define(version: 20131025075754) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "boss_id"
-    t.string   "estado"
+    t.integer  "estado",        limit: 255
     t.string   "comentario"
   end
 
   add_index "reqmaterials", ["user_id"], name: "index_reqmaterials_on_user_id"
+
+  create_table "reqpeople", force: true do |t|
+    t.string   "assunto"
+    t.string   "local_partida"
+    t.string   "local_destino"
+    t.string   "local_retorno"
+    t.string   "condutor"
+    t.integer  "numero_passageiros"
+    t.datetime "data_partida"
+    t.datetime "data_retorno"
+    t.string   "observacoes"
+    t.integer  "user_id"
+    t.integer  "boss_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "estado",             limit: 255
+    t.string   "comentario"
+  end
+
+  add_index "reqpeople", ["boss_id"], name: "index_reqpeople_on_boss_id"
+  add_index "reqpeople", ["user_id"], name: "index_reqpeople_on_user_id"
 
   create_table "services", force: true do |t|
     t.string   "nome"

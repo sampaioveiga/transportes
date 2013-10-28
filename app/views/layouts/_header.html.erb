@@ -9,7 +9,7 @@
 		<ul class="nav pull-right">
 			<% if current_user %>
 				<li><%= link_to "Novo transporte de material", new_user_reqmaterial_path(current_user) %></li>
-				<li><%= link_to "Tranporte pessoal", '#' %></li>
+				<li><%= link_to "Nova deslocação de pessoal", new_user_reqperson_path(current_user) %></li>
 				<% if current_user.admin %>
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#">

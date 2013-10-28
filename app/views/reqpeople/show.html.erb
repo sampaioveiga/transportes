@@ -1,0 +1,43 @@
+<% provide(:title, @reqperson.assunto) %>
+<% case @reqperson.estado %>
+	<% when 1 %>
+		<% estado = "Aprovado" %>
+	<% when 2 %>
+		<% estado = "Recusado" %>
+	<% else %>
+		<% estado = "Pendente" %>
+<% end %>
+
+<h1><%= @reqperson.assunto %></h1>
+<div class="span6 offset3">
+	<dl class="dl-horizontal">
+		<dt>Requisitante</dt>
+		<dd><%= @reqperson.user.nome %></dd>
+		<dt>Serviço</dt>
+		<dd><%= @reqperson.user.service.nome %></dd>
+		<dt>Assunto</dt>
+		<dd><%= @reqperson.assunto %></dd>
+		<dt>Local destino</dt>
+		<dd><%= @reqperson.local_destino %></dd>
+		<dt>Condutor</dt>
+		<dd><%= @reqperson.condutor %></dd>
+		<dt>Numero passageiros</dt>
+		<dd><%= @reqperson.numero_passageiros %></dd>
+		<dt>Local partida</dt>
+		<dd><%= @reqperson.local_partida %></dd>
+		<dt>Data partida</dt>
+		<dd><%= @reqperson.data_partida %></dd>
+		<dt>Local retorno</dt>
+		<dd><%= @reqperson.local_retorno %></dd>
+		<dt>Data retorno</dt>
+		<dd><%= @reqperson.data_retorno %></dd>
+		<dt>Observacoes</dt>
+		<dd><%= @reqperson.observacoes %>&nbsp;</dd>
+		<dt>Estado</dt>
+		<dd><%= estado %>&nbsp;</dd>
+		<dt>Comentarios</dt>
+		<dd><%= @reqperson.comentario %>&nbsp;</dd>
+	</dl>
+	<%= link_to "Editar", edit_user_reqperson_path(@user, @reqperson), class: 'btn btn-primary' %>
+	<%= link_to "Cancelar", @user, class: 'btn' %>
+</div>

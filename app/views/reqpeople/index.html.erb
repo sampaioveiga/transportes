@@ -1,0 +1,41 @@
+<% provide(:title, "Requisições #{@user.nome}") %>
+
+<h1><%= link_to "Requisições #{@user.nome}", user_path(@user) %></h1>
+<div class="span8 offset2">
+	<%= will_paginate %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Assunto</th>
+				<th>Local destino</th>
+				<th>Local partida</th>
+				<th>Data partida</th>
+				<th>Local retorno</th>
+				<th>Data retorno</th>
+				<th>Comentário</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @reqpeople.each do |reqperson| %>
+				<% case reqperson.estado %>
+					<% when 1 %>
+						<% estado = "success" %>
+					<% when 2 %>
+						<% estado = "danger" %>
+					<% else %>
+						<% estado = "warning" %>
+				<% end %>
+				<tr class=<%= estado %>>
+					<td><%= link_to reqperson.assunto, user_reqperson_path(@user, reqperson) %></td>
+					<td><%= reqperson.local_destino %></td>
+					<td><%= reqperson.local_partida %></td>
+					<td><%= reqperson.data_partida %></td>
+					<td><%= reqperson.local_retorno %></td>
+					<td><%= reqperson.data_retorno %></td>
+					<td><%= reqperson.comentario %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= will_paginate %>
+</div>

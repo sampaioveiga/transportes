@@ -1,4 +1,12 @@
 <% provide(:title, @reqmaterial.assunto) %>
+<% case @reqmaterial.estado %>
+	<% when 1 %>
+		<% estado = "Aprovado" %>
+	<% when 2 %>
+		<% estado = "Recusado" %>
+	<% else %>
+		<% estado = "Pendente" %>
+<% end %>
 
 <h1><%= @reqmaterial.assunto %></h1>
 <div class="span6 offset3">
@@ -18,7 +26,7 @@
 		<dt>Observações</dt>
 		<dd><%= @reqmaterial.observacoes %>&nbsp;</dd>
 		<dt>Estado</dt>
-		<dd><%= @reqmaterial.estado %>&nbsp;</dd>
+		<dd><%= estado %>&nbsp;</dd>
 		<dt>Comentário</dt>
 		<dd><%= @reqmaterial.comentario %>&nbsp;</dd>
 	</dl>

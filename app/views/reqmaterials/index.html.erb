@@ -1,6 +1,6 @@
 <% provide(:title, "Requisições #{@user.nome}") %>
 
-<h1>Requisições <%= link_to @user.nome, user_path(@user) %></h1>
+<h1> <%= link_to "Requisições #{@user.nome}", user_path(@user) %></h1>
 <div class="span8 offset2">
 	<%= will_paginate %>
 	<table class="table">
@@ -9,19 +9,25 @@
 				<th>Assunto</th>
 				<th>Local entrega</th>
 				<th>Data entrega</th>
-				<th>Validação</th>
 				<th>Comentário</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @reqmaterials.each do |reqmaterial| %>
-			<tr>
-				<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(@user, reqmaterial) %></td>
-				<td><%= reqmaterial.local_entrega %></td>
-				<td><%= reqmaterial.data_entrega %></td>
-				<td><%= reqmaterial.estado %></td>
-				<td><%= reqmaterial.comentario %></td>
-			</tr>
+				<% case reqmaterial.estado %>
+					<% when 1 %>
+						<% estado = "success" %>
+					<% when 2 %>
+						<% estado = "danger" %>
+					<% else %>
+						<% estado = "warning" %>
+				<% end %>
+				<tr class=<%= estado %>>
+					<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(@user, reqmaterial) %></td>
+					<td><%= reqmaterial.local_entrega %></td>
+					<td><%= reqmaterial.data_entrega %></td>
+					<td><%= reqmaterial.comentario %></td>
+				</tr>
 			<% end %>
 		</tbody>
 	</table>
