@@ -9,10 +9,4 @@ class ApplicationController < ActionController::Base
 		end
 
 		helper_method :current_user
-
-		def last_page
-    		session[:last_page] = request.env['HTTP_REFERER']
-  		end
-
-		helper_method :last_page
 end
