@@ -14,7 +14,7 @@ class ReqmaterialsController < ApplicationController
 	def new
 		@reqmaterial = @user.reqmaterials.new
 		@reqmaterial.user_id ||= current_user.id
-		@reqmaterial.local_partida ||= current_user.ulsneunit.nome
+		@reqmaterial.local_partida ||= current_user.ulsneunit.id
 		@reqmaterial.data_entrega ||= Time.now.tomorrow
 		@reqmaterial.estado ||= 0
 	end

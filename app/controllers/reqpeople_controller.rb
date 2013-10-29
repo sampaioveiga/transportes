@@ -14,9 +14,9 @@ class ReqpeopleController < ApplicationController
 	def new
 		@reqperson = @user.reqpeople.new
 		@reqperson.user_id ||= current_user.id
-		@reqperson.local_partida ||= current_user.ulsneunit.nome
+		@reqperson.local_partida ||= current_user.ulsneunit.id
 		@reqperson.data_partida ||= Time.now.tomorrow
-		@reqperson.local_retorno ||= current_user.ulsneunit.nome
+		@reqperson.local_retorno ||= current_user.ulsneunit.id
 		@reqperson.data_retorno ||= @reqperson.data_partida + 1.hour
 		@reqperson.condutor ||= current_user.nome
 		@reqperson.numero_passageiros ||= 1
