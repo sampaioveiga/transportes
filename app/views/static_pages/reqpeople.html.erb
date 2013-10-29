@@ -1,0 +1,46 @@
+<% provide(:title, "Requisições de transporte de pessoal") %>
+
+<h1>Requisições de transporte de pessoal</h1>
+<div class="span10 offset1">
+	<%= link_to "Voltar", root_path, class: 'btn' %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Data partida</th>
+				<th>Assunto</th>
+				<th>Requisitante</th>
+				<th>Destino</th>
+				<th>Local partida</th>
+				<th>Local retorno</th>
+				<th>Data retorno</th>
+				<th>Estado</th>
+				<th>Comentario</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @reqpeople.each do |reqperson| %>
+				<% case reqperson.estado %>
+					<% when 1 %>
+						<% status = "success" %>
+						<% estado = "Aprovado" %>
+					<% when 2 %>
+						<% status = "error" %>
+						<% estado = "Recusado" %>
+					<% else %>
+						<% status = "" %>
+						<% estado = "Pendente" %>
+				<% end %>
+				<tr class=<%= status %>>
+					<td><%= link_to reqperson.data_partida, edit_user_reqperson_path(reqperson.user, reqperson) %></td>
+					<td><%= reqperson.assunto %></td>
+					<td><%= reqperson.user.nome %></td>
+					<td><%= reqperson.local_destino %></td>
+					<td><%= reqperson.local_partida %></td>
+					<td><%= reqperson.local_retorno %></td>
+					<td><%= reqperson.data_retorno %></td>
+					<td><%= estado %></td>
+					<td><%= reqperson.comentario %></td>
+				</tr>
+			<% end %>
+	</table>
+</div>

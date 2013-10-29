@@ -56,7 +56,7 @@ class ReqpeopleController < ApplicationController
 		@reqperson.update_attribute(:estado, params[:estado])
 		@reqperson.update_attribute(:comentario, params[:comentario])
 		flash[:success] = "Validação efectuada"
-		redirect_to user_reqperson_path(@user, @reqperson)
+		redirect_to static_pages_reqpeople_path
 	end
 
 	private

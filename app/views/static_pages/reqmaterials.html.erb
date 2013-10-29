@@ -1,0 +1,44 @@
+<% provide(:title, "Requisições de transporte de material") %>
+
+<h1>Requisições de transporte de material</h1>
+<div class="span10 offset1">
+	<%= link_to "Voltar", root_path, class: 'btn' %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Data entrega</th>
+				<th>Assunto</th>
+				<th>Requisitante</th>
+				<th>Urgente</th>
+				<th>Local partida</th>
+				<th>Local entrega</th>
+				<th>Estado</th>
+				<th>Comentario</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @reqmaterials.each do |reqmaterial| %>
+				<% case reqmaterial.estado %>
+					<% when 1 %>
+						<% status = "success" %>
+						<% estado = "Aprovado" %>
+					<% when 2 %>
+						<% status = "error" %>
+						<% estado = "Recusado" %>
+					<% else %>
+						<% status = "" %>
+						<% estado = "Pendente" %>
+				<% end %>
+				<tr class=<%= status %>>
+					<td><%= link_to reqmaterial.data_entrega, edit_user_reqmaterial_path(reqmaterial.user, reqmaterial) %></td>
+					<td><%= reqmaterial.assunto %></td>
+					<td><%= reqmaterial.user.nome %></td>
+					<td><%= reqmaterial.urgente %></td>
+					<td><%= reqmaterial.local_partida %></td>
+					<td><%= reqmaterial.local_entrega %></td>
+					<td><%= estado %></td>
+					<td><%= reqmaterial.comentario %></td>
+				</tr>
+			<% end %>
+	</table>
+</div>

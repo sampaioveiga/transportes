@@ -53,7 +53,7 @@ class ReqmaterialsController < ApplicationController
 		@reqmaterial.update_attribute(:estado, params[:estado])
 		@reqmaterial.update_attribute(:comentario, params[:comentario])
 		flash[:success] = "Validação efectuada"
-		redirect_to user_reqmaterial_path(@user, @reqmaterial)
+		redirect_to static_pages_reqmaterials_path
 	end
 
 

@@ -12,6 +12,8 @@ Transportes::Application.routes.draw do
   end
   resources :sessions,    except: [ :show, :edit, :update ]
   get 'static_pages/index' => 'static_pages#index'
+  get 'static_pages/reqmaterials' => 'static_pages#reqmaterials'
+  get 'static_pages/reqpeople' => 'static_pages#reqpeople'
   match '/signin',  to: 'users#new',        via: 'get'
   match '/login',   to: 'sessions#new',     via: 'get'
   match '/logout',  to: 'sessions#destroy', via: 'get'
