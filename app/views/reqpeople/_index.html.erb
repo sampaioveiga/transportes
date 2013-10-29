@@ -4,24 +4,27 @@
 			<th>Assunto</th>
 			<th>Local destino</th>
 			<th>Data partida</th>
-			<th>Data retorno</th>
+			<th>Validação</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @user.reqpeople.each do |reqperson| %>
 			<% case reqperson.estado %>
 				<% when 1 %>
-					<% estado = "success" %>
+					<% estado = "Aprovado" %>
+					<% status = "success" %>
 				<% when 2 %>
-					<% estado = "danger" %>
+					<% estado = "Recusado" %>
+					<% status = "danger" %>
 				<% else %>
-					<% estado = "warning" %>
+					<% estado = "Pendente" %>
+					<% status = "warning" %>
 			<% end %>
-			<tr class=<%= estado %>>
+			<tr class=<%= status %>>
 				<td><%= link_to reqperson.assunto, user_reqperson_path(@user, reqperson) %></td>
 				<td><%= reqperson.local_destino %></td>
 				<td><%= reqperson.data_partida %></td>
-				<td><%= reqperson.data_retorno %></td>
+				<td><%= estado %></td>
 			</tr>
 		<% end %>
 	</tbody>

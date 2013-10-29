@@ -8,6 +8,7 @@
 		</div>
 		<ul class="nav pull-right">
 			<% if current_user %>
+				<li><%= link_to "Início", root_path %></li>
 				<li><%= link_to "Novo transporte de material", new_user_reqmaterial_path(current_user) %></li>
 				<li><%= link_to "Nova deslocação de pessoal", new_user_reqperson_path(current_user) %></li>
 				<% if current_user.admin %>

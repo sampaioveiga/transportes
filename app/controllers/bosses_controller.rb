@@ -1,5 +1,5 @@
 class BossesController < ApplicationController
-	before_actions :set_service
+    before_action :set_service
 	
 	def create
 		@boss = @service.bosses.create(params[:boss].permit(:title, :user_id, :ulsneunit_id))

@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id
 			flash[:success] = "Sessão iniciada, #{user.nome}"
-			redirect_to user_path(current_user)
+			redirect_to root_path
 		else
 			flash[:error] = "Credenciais inválidas."
 			render 'new'

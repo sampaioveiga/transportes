@@ -1,6 +1,6 @@
-<% provide(:title, "Requisições #{@user.nome}") %>
+<% provide(:title, "Transporte pessoal: #{@user.nome}") %>
 
-<h1><%= link_to "Requisições #{@user.nome}", user_path(@user) %></h1>
+<h1><%= link_to "Transporte pessoal: #{@user.nome}", user_path(@user) %></h1>
 <div class="span8 offset2">
 	<%= will_paginate %>
 	<table class="table">

@@ -4,22 +4,27 @@
 			<th>Assunto</th>
 			<th>Local entrega</th>
 			<th>Data entrega</th>
+			<th>Estado</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @user.reqmaterials.each do |reqmaterial| %>
 			<% case reqmaterial.estado %>
 				<% when 1 %>
-					<% estado = "success" %>
+					<% status = "success" %>
+					<% estado = "Aprovado" %>
 				<% when 2 %>
-					<% estado = "danger" %>
+					<% status = "danger" %>
+					<% estado = "Recusado" %>
 				<% else %>
-					<% estado = "warning" %>
+					<% status = "warning" %>
+					<% estado = "Pendente" %>
 			<% end %>
-			<tr class=<%= estado %>>
+			<tr class=<%= status %>>
 				<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(@user, reqmaterial) %></td>
 				<td><%= reqmaterial.local_entrega %></td>
 				<td><%= reqmaterial.data_entrega %></td>
+				<td><%= estado %></td>
 			</tr>
 		<% end %>
 	</tbody>

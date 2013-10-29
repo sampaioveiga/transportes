@@ -1,8 +1,67 @@
 <% provide(:title, "Index") %>
 
-<h1>Viagens</h1>
-<div class="span8 offset2">
-	<% @reqmaterials.each do |reqmaterial| %>
-		<%= reqmaterial.assunto %>
-	<% end %>
+<h1>Requisições para <%= Date.today %></h1>
+<div class="span10 offset1">
+	<div class="well">
+		<h2>Transporte de material <small><%= link_to "Gerir requisições", '#' %></small></h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Assunto</th>
+					<th>Requisitante</th>
+					<th>Urgente</th>
+					<th>Local partida</th>
+					<th>Local entrega</th>
+					<th>Data entrega</th>
+					<th>Comentario</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @reqmaterials.each do |reqmaterial| %>
+					<tr>
+						<td><%= reqmaterial.assunto %></td>
+						<td><%= reqmaterial.user.nome %></td>
+						<td><%= reqmaterial.urgente %></td>
+						<td><%= reqmaterial.local_partida %></td>
+						<td><%= reqmaterial.local_entrega %></td>
+						<td><%= reqmaterial.data_entrega %></td>
+						<td><%= reqmaterial.comentario %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="well">
+		<h2>Transporte de pessoal <small><%= link_to "Gerir requisições", '#' %></small></h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Assunto</th>
+					<th>Requisitante</th>
+					<th>Destino</th>
+					<th>Local partida</th>
+					<th>Data partida</th>
+					<th>Local retorno</th>
+					<th>Data Retorno</th>
+					<th>Comentario</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<% @reqpeople.each do |reqperson| %>
+						<tr>
+							<td><%= link_to reqperson.assunto, user_reqperson_path(reqperson.user,reqperson) %></td>
+							<td><%= reqperson.user.nome %></td>
+							<td><%= reqperson.local_destino %></td>
+							<td><%= reqperson.local_partida %></td>
+							<td><%= reqperson.data_partida %></td>
+							<td><%= reqperson.local_retorno %></td>
+							<td><%= reqperson.data_retorno %></td>
+							<td><%= reqperson.comentario %></td>
+						</tr>
+					<% end %>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

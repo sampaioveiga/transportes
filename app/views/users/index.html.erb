@@ -10,8 +10,8 @@
 				<th>Nome</th>
 				<th>N. mecanográfico</th>
 				<th>E-mail</th>
-				<th>Autorizado?</th>
 				<th>Validado?</th>
+				<th>Administrador?</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,7 +20,7 @@
 					<td><%= link_to user.nome, user_path(user), class: 'btn btn-link' %></td>
 					<td><%= user.numero_mecanografico %></td>
 					<td><%= user.email %></td>
-					<td></td>
+					<td><%= user.auth %></td>
 					<td><%= user.admin %></td>
 				</tr>
 			<% end %>
