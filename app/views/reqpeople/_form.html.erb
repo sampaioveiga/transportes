@@ -26,7 +26,9 @@
 				<%= f.label :assunto %>
 				<%= f.text_field :assunto %>
 				<%= f.label :local_destino %>
-				<%= f.text_field :local_destino %>
+				<%= f.select :local_destino, Destination.order('Destino').collect { |d| [ d.destino, d.destino ] }, include_blank: "Outro" %>
+				<%= text_field_tag :outro, "", class: 'input-medium' %>
+				<span class="help-block">Selecione da lista ou personalize na caixa de texto</span>
 				<%= f.label :condutor %>
 				<%= f.text_field :condutor %>
 				<%= f.label :numero_passageiros %>

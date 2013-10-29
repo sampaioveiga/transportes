@@ -15,10 +15,10 @@
 					<% status = "success" %>
 				<% when 2 %>
 					<% estado = "Recusado" %>
-					<% status = "danger" %>
+					<% status = "error" %>
 				<% else %>
 					<% estado = "Pendente" %>
-					<% status = "warning" %>
+					<% status = "" %>
 			<% end %>
 			<tr class=<%= status %>>
 				<td><%= link_to reqperson.assunto, user_reqperson_path(@user, reqperson) %></td>

@@ -1,10 +1,10 @@
 Transportes::Application.routes.draw do
-  get "reqpeople/index"
-  resources :services,    except: [ :destroy ] do
-    resources :bosses,    except: [ :show, :index ]
+  resources :destinations,  except: [ :destroy ]
+  resources :services,      except: [ :destroy ] do
+    resources :bosses,      except: [ :show, :index ]
   end
-  resources :ulsneunits,  except: [ :show, :destroy ]
-  resources :users,       except: [ :destroy ] do
+  resources :ulsneunits,    except: [ :show, :destroy ]
+  resources :users,         except: [ :destroy ] do
     resources :reqmaterials
     post '/reqmaterials/:id/validate' => 'reqmaterials#validate', as: :validate_reqmaterial
     resources :reqpeople

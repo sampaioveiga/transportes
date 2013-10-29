@@ -21,10 +21,14 @@ class ReqmaterialsController < ApplicationController
 
 	def create
 		@reqmaterial = @user.reqmaterials.new(reqmaterials_params)
+		if @reqmaterial.local_entrega.empty?
+			@reqmaterial.local_entrega = params[:outro]
+		end
 		if @reqmaterial.save
 			flash[:alert] = "Requisição submetida. A aguardar validação"
 			redirect_to [@user, @reqmaterial]
 		else
+			flash[:alert] = @reqmaterial.local_entrega
 			render 'new'
 		end
 	end
@@ -55,7 +59,7 @@ class ReqmaterialsController < ApplicationController
 
 	private
 		def reqmaterials_params
-			params.require(:reqmaterial).permit(:assunto, :local_partida, :local_entrega, :data_entrega, :urgente, :observacoes, :user_id, :boss_id, :estado)
+			params.require(:reqmaterial).permit(:assunto, :local_partida, :local_entrega, :data_entrega, :urgente, :observacoes, :user_id, :boss_id, :estado, :outro)
 		end
 
 		def set_reqmaterial

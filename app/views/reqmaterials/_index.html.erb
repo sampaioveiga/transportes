@@ -14,10 +14,10 @@
 					<% status = "success" %>
 					<% estado = "Aprovado" %>
 				<% when 2 %>
-					<% status = "danger" %>
+					<% status = "error" %>
 					<% estado = "Recusado" %>
 				<% else %>
-					<% status = "warning" %>
+					<% status = "" %>
 					<% estado = "Pendente" %>
 			<% end %>
 			<tr class=<%= status %>>

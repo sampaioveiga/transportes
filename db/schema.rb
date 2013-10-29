@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131028122805) do
+ActiveRecord::Schema.define(version: 20131029112920) do
 
   create_table "bosses", force: true do |t|
     t.integer  "service_id"
@@ -22,10 +22,16 @@ ActiveRecord::Schema.define(version: 20131028122805) do
     t.integer  "ulsneunit_id"
   end
 
+  create_table "destinations", force: true do |t|
+    t.string   "destino"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reqmaterials", force: true do |t|
     t.string   "assunto"
     t.string   "local_partida"
-    t.string   "local_entrega"
+    t.integer  "local_entrega",       limit: 255
     t.datetime "data_entrega"
     t.boolean  "urgente"
     t.string   "observacoes"
@@ -33,8 +39,9 @@ ActiveRecord::Schema.define(version: 20131028122805) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "boss_id"
-    t.integer  "estado",        limit: 255
+    t.integer  "estado",              limit: 255
     t.string   "comentario"
+    t.string   "local_entrega_outro"
   end
 
   add_index "reqmaterials", ["user_id"], name: "index_reqmaterials_on_user_id"

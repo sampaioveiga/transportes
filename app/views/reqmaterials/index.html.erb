@@ -18,9 +18,9 @@
 					<% when 1 %>
 						<% estado = "success" %>
 					<% when 2 %>
-						<% estado = "danger" %>
+						<% estado = "error" %>
 					<% else %>
-						<% estado = "warning" %>
+						<% estado = "" %>
 				<% end %>
 				<tr class=<%= estado %>>
 					<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(@user, reqmaterial) %></td>

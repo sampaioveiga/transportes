@@ -25,6 +25,9 @@ class ReqpeopleController < ApplicationController
 
 	def create
 		@reqperson = @user.reqpeople.new(reqpeople_params)
+		if @reqperson.local_destino.empty?
+			@reqperson.local_destino = params[:outro]
+		end
 		if @reqperson.save
 			flash[:success] = "Requisição submetida. A aguardar validação"
 			redirect_to [@user, @reqperson]

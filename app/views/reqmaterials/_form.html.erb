@@ -17,7 +17,7 @@
 				<%= text_field_tag current_user, current_user.service.nome, readonly: true, class: 'span11' %>
 				<%= text_field_tag current_user, current_user.ulsneunit.nome, readonly: true, class: 'span11' %>
 				<%= f.label :boss_id, "Chefia" %>
-				<%= f.select :boss_id, current_user.service.bosses.collect { |b| [b.user.nome, b.user.id] }, { class: 'input-medium' } %>
+				<%= f.select :boss_id, current_user.service.bosses.collect { |b| [b.user.nome, b.user.id] }, { class: 'input-small' } %>
 				<%= f.text_field :estado, style: 'display: none', readonly: true, class: 'span11' %>
 			</fieldset>
 		</div>
@@ -28,7 +28,9 @@
 				<%= f.label :local_partida %>
 				<%= f.select :local_partida, Ulsneunit.order('Nome').collect { |u| [ u.nome, u.id ] } %>
 				<%= f.label :local_entrega %>
-				<%= f.text_field :local_entrega %>
+				<%= f.select :local_entrega, Destination.order('Destino').collect { |d| [ d.destino, d.destino ] }, include_blank: "Outro" %>
+				<%= text_field_tag :outro, "", class: 'input-medium' %>
+				<span class="help-block">Selecione da lista ou personalize na caixa de texto</span>
 				<div id="datetimepicker" class="input-append date">
 					<%= f.label :data_entrega %>
 					<%= f.text_field :data_entrega %>
