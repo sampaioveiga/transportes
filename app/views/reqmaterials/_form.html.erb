@@ -26,7 +26,7 @@
 				<%= f.label :assunto %>
 				<%= f.text_field :assunto %>
 				<%= f.label :local_partida %>
-				<%= f.select :local_partida, Ulsneunit.order('Nome').collect { |u| [ u.nome, u.id ] } %>
+				<%= f.select :local_partida, Ulsneunit.order('Nome').collect { |u| [ u.nome, u.nome ] } %>
 				<%= f.label :local_entrega %>
 				<%= f.select :local_entrega, Destination.order('Destino').collect { |d| [ d.destino, d.destino ] }, include_blank: "Outro" %>
 				<%= text_field_tag :outro, "", class: 'input-medium' %>

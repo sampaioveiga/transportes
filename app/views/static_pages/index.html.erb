@@ -19,7 +19,7 @@
 			<tbody>
 				<% @reqmaterials.each do |reqmaterial| %>
 					<tr>
-						<td><%= reqmaterial.assunto %></td>
+						<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(reqmaterial.user, reqmaterial) %></td>
 						<td><%= reqmaterial.user.nome %></td>
 						<td><%= reqmaterial.urgente %></td>
 						<td><%= reqmaterial.local_partida %></td>
