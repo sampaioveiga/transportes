@@ -10,6 +10,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    active_model_serializers (0.8.1)
+      activemodel (>= 3.0)
     activemodel (4.0.0)
       activesupport (= 4.0.0)
       builder (~> 3.1.0)
@@ -28,7 +30,6 @@ GEM
     arel (4.0.0)
     atomic (1.1.14)
     bcrypt-ruby (3.0.1)
-    bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-datetimepicker-rails (0.0.11)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
@@ -44,6 +45,7 @@ GEM
     coffee-script-source (1.6.3)
     erubis (2.7.0)
     execjs (2.0.2)
+    fullcalendar-rails (1.6.4.0)
     hike (1.2.3)
     i18n (0.6.5)
     jbuilder (1.0.2)
@@ -121,11 +123,13 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  active_model_serializers (= 0.8.1)
   bcrypt-ruby (= 3.0.1)
   bootstrap-datetimepicker-rails (= 0.0.11)
   bootstrap-sass (= 2.3.2.2)
   bootstrap-will_paginate (= 0.0.10)
   coffee-rails (= 4.0.0)
+  fullcalendar-rails (= 1.6.4.0)
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
   pg (= 0.17.0)

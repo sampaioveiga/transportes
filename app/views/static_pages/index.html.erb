@@ -1,6 +1,6 @@
 <% provide(:title, "Index") %>
 
-<h1>Requisições para <%= Date.today %></h1>
+<h1>Requisições para <%= Date.today %> <small><%= link_to "Calendário", static_pages_calendar_path %></small></h1>
 <div class="span10 offset1">
 	<div class="well">
 		<h2>Transporte de material <small><%= link_to "Gerir", static_pages_reqmaterials_path %></small></h2>

@@ -15,6 +15,19 @@ class StaticPagesController < ApplicationController
 		@reqpeople = Reqperson.where('data_partida >= ?', DateTime.now.end_of_day).order('data_partida')
 	end
 
+	def all_reqmaterials
+		@requisitions = Reqmaterial.all
+		render json: @requisitions
+	end
+
+	def all_reqpeople
+		@requisitions = Reqperson.all
+		render json: @requisitions
+	end
+
+	def calendar			
+	end
+
 	private
 		def require_login
       		unless logged_in?
@@ -31,4 +44,8 @@ class StaticPagesController < ApplicationController
 				redirect_to user_path(current_user)
 			end
 		end
+
+		def default_serializer_options  
+  			{root: false}  
+		end  
 end
