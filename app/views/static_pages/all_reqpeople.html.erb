@@ -1,11 +1,6 @@
 <% provide(:title, "Calendário") %>
 
 <div class="span10 offset1">
-	<div class="btn-group text-center">
-		<button class="btn">Left</button>
-		<button class="btn">Middle</button>
-		<button class="btn">Right</button>
-	</div>
 	<div id='calendar'></div>
 </div>
 
@@ -32,8 +27,7 @@
 			dayNames: ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'],
 			dayNamesShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'],
 			eventSources: [
-				 '/static_pages/all_reqmaterials',
-				 '/static_pages/all_reqpeople'
+				 '/static_pages/all_reqpeople.json',
 			]
     	});
 	});

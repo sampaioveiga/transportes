@@ -1,0 +1,34 @@
+<% provide(:title, "Calendário") %>
+
+<div class="span10 offset1">
+	<div id='calendar'></div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$('#calendar').fullCalendar({
+        	header: {
+    			left:   'month,agendaWeek,agendaDay',
+    			center: 'title',
+    			right:  'prev,next today'
+			},
+			defaultView: 'agendaWeek',
+			allDayDefault: false,
+			axisFormat: 'HH(:mm)',
+			buttonText: {
+				month: 'mês',
+				week: 'semana',
+				day: 'dia',
+        		today: 'hoje',
+    		},
+    		timeFormat: 'HH:mm',
+			monthNames: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho','julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro' ],
+			monthNamesShort: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun','jul', 'ago', 'set', 'out', 'nov', 'dez' ],
+			dayNames: ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'],
+			dayNamesShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'],
+			eventSources: [
+				 '/static_pages/all_reqmaterials.json',
+			]
+    	});
+	});
+</script>

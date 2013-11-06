@@ -17,12 +17,18 @@ class StaticPagesController < ApplicationController
 
 	def all_reqmaterials
 		@requisitions = Reqmaterial.all
-		render json: @requisitions
+		respond_to do |format|
+			format.html
+			format.json { render json: @requisitions }
+		end
 	end
 
 	def all_reqpeople
 		@requisitions = Reqperson.all
-		render json: @requisitions
+		respond_to do |format|
+			format.html
+			format.json { render json: @requisitions }
+		end
 	end
 
 	def calendar			
