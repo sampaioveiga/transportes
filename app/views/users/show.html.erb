@@ -15,7 +15,7 @@
 		<dt>Contacto</dt>
 		<dd><%= @user.contacto %>&nbsp;</dd>
 		<dt>Serviço</dt>
-		<dd><%= @user.service.nome %></dd>
+		<dd><%= link_to @user.service.nome, reqs_by_boss_path %></dd>
 		<dt>Unidade</dt>
 		<dd><%= @user.ulsneunit.nome %></dd>
 	</dl>

@@ -1,26 +1,27 @@
 Transportes::Application.routes.draw do
-  resources :destinations,  except: [ :destroy ]
-  resources :services,      except: [ :destroy ] do
-    resources :bosses,      except: [ :show, :index ]
-  end
-  resources :ulsneunits,    except: [ :show, :destroy ]
-  resources :users,         except: [ :destroy ] do
-    resources :reqmaterials
-    post '/reqmaterials/:id/validate' => 'reqmaterials#validate', as: :validate_reqmaterial
-    resources :reqpeople
-    post '/reqpeople/:id/validate' => 'reqpeople#validate', as: :validate_reqperson
-  end
-  resources :sessions,    except: [ :show, :edit, :update ]
-  get 'static_pages/index' => 'static_pages#index'
-  get 'static_pages/reqmaterials' => 'static_pages#reqmaterials'
-  get 'static_pages/reqpeople' => 'static_pages#reqpeople'
-  get 'static_pages/all_reqmaterials' => 'static_pages#all_reqmaterials'
-  get 'static_pages/all_reqpeople' => 'static_pages#all_reqpeople'
-  get 'static_pages/calendar' => 'static_pages#calendar'
-  match '/signin',  to: 'users#new',        via: 'get'
-  match '/login',   to: 'sessions#new',     via: 'get'
-  match '/logout',  to: 'sessions#destroy', via: 'get'
-  root 'static_pages#index'
+    resources :destinations,  except: [ :destroy ]
+    resources :services,      except: [ :destroy ] do
+        resources :bosses,      except: [ :show, :index ]
+    end
+    resources :ulsneunits,    except: [ :show, :destroy ]
+    resources :users,         except: [ :destroy ] do
+        resources :reqmaterials
+        post '/reqmaterials/:id/validate' => 'reqmaterials#validate', as: :validate_reqmaterial
+        resources :reqpeople
+        post '/reqpeople/:id/validate' => 'reqpeople#validate', as: :validate_reqperson
+    end
+    resources :sessions,    except: [ :show, :edit, :update ]
+    get 'static_pages/index' => 'static_pages#index'
+    get 'static_pages/reqmaterials' => 'static_pages#reqmaterials'
+    get 'static_pages/reqpeople' => 'static_pages#reqpeople'
+    get 'static_pages/all_reqmaterials' =>  'static_pages#all_reqmaterials'
+    get 'static_pages/all_reqpeople'    =>  'static_pages#all_reqpeople'
+    get 'static_pages/calendar' => 'static_pages#calendar'
+    get 'reqs_by_boss' => 'bosses#view'
+    match '/signin',  to: 'users#new',        via: 'get'
+    match '/login',   to: 'sessions#new',     via: 'get'
+    match '/logout',  to: 'sessions#destroy', via: 'get'
+    root 'static_pages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
