@@ -13,13 +13,13 @@ class ReqmaterialsController < ApplicationController
 
 	def new
 		@reqmaterial = @user.reqmaterials.new
-		@reqmaterial.user_id ||= current_user.id
 		@reqmaterial.local_partida ||= current_user.ulsneunit.id
-		@reqmaterial.estado ||= 0
 	end
 
 	def create
 		@reqmaterial = @user.reqmaterials.new(reqmaterials_params)
+		@reqmaterial.user_id = current_user.id
+		@reqmaterial.estado = 0
 		if @reqmaterial.local_entrega.empty?
 			@reqmaterial.local_entrega = params[:outro]
 		end

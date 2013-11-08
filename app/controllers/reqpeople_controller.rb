@@ -13,16 +13,16 @@ class ReqpeopleController < ApplicationController
 	
 	def new
 		@reqperson = @user.reqpeople.new
-		@reqperson.user_id ||= current_user.id
 		@reqperson.local_partida ||= current_user.ulsneunit.id
 		@reqperson.local_retorno ||= current_user.ulsneunit.id
 		@reqperson.condutor ||= current_user.nome
 		@reqperson.numero_passageiros ||= 1
-		@reqperson.estado ||= 0
 	end
 
 	def create
 		@reqperson = @user.reqpeople.new(reqpeople_params)
+		@reqperson.user_id = current_user.id
+		@reqperson.estado = 0
 		if @reqperson.local_destino.empty?
 			@reqperson.local_destino = params[:outro]
 		end

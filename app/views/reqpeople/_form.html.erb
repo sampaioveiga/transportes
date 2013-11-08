@@ -13,12 +13,10 @@
 		<div class="span4">
 			<fieldset>
 				<%= text_field_tag current_user, current_user.nome, readonly: true, class: 'span11' %>
-				<%= f.text_field :user_id, style: 'display: none', readonly: true, class: 'span11' %>
 				<%= text_field_tag current_user, current_user.service.nome, readonly: true, class: 'span11' %>
 				<%= text_field_tag current_user, current_user.ulsneunit.nome, readonly: true, class: 'span11' %>
 				<%= f.label :boss_id, "Chefia" %>
 				<%= f.select :boss_id, current_user.service.bosses.collect { |b| [b.user.nome, b.user.id] }, { class: 'input-medium' } %>
-				<%= f.text_field :estado, style: 'display: none', readonly: true, class: 'span11' %>
 			</fieldset>
 		</div>
 		<div class="span8">
