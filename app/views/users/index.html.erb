@@ -2,6 +2,7 @@
 
 <h1>Utilizadores</h1>
 <div class="span8 offset2">
+	<%= render 'searchform' %>
 	<%= link_to "Novo utilizador", new_user_path, class: 'btn btn-primary' %>
 	<%= will_paginate %>
 	<table class="table">

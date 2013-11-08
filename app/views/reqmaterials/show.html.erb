@@ -32,4 +32,5 @@
 	</dl>
 	<%= link_to "Editar", edit_user_reqmaterial_path(@user, @reqmaterial), class: 'btn btn-primary' %>
 	<%= link_to "Cancelar", @user, class: 'btn' %>
+	<%= link_to "Eliminar", user_reqmaterial_path(@user, @reqmaterial), method: :delete, data: { confirm: "Tem a certeza?"}, class: 'btn btn-danger'  %>
 </div>

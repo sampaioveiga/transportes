@@ -39,6 +39,11 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def search
+		@users = User.where("nome LIKE :prefix", prefix: "%#{params[:search_string]}%").paginate(page: params[:page])
+		render 'index'
+	end
+
 	private
 		def set_user
 			@user = User.find(params[:id])

@@ -34,7 +34,7 @@
 				<%= f.label :numero_passageiros %>
 				<%= f.text_field :numero_passageiros, class: 'span2' %>
 				<%= f.label :local_partida %>
-				<%= f.select :local_partida, Ulsneunit.order('Nome').collect { |u| [ u.nome, u.nome ] } %><br />
+				<%= f.select :local_partida, Ulsneunit.order('Nome').collect { |u| [ u.nome, u.nome ] }, selected: current_user.ulsneunit.nome %><br />
 				<div class="input-append date datetimepicker">
 					<%= f.label :data_partida %>
 					<%= f.text_field :data_partida %>
@@ -43,7 +43,7 @@
     				</span>
 				</div>
 				<%= f.label :local_retorno %>
-				<%= f.select :local_retorno, Ulsneunit.order('Nome').collect { |u| [ u.nome, u.nome ] } %><br />
+				<%= f.select :local_retorno, Ulsneunit.order('Nome').collect { |u| [ u.nome, u.nome ] }, selected: current_user.ulsneunit.nome %><br />
 				<div class="input-append date datetimepicker">
 					<%= f.label :data_retorno %>
 					<%= f.text_field :data_retorno %>

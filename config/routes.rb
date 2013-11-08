@@ -21,6 +21,7 @@ Transportes::Application.routes.draw do
     match '/signin',  to: 'users#new',        via: 'get'
     match '/login',   to: 'sessions#new',     via: 'get'
     match '/logout',  to: 'sessions#destroy', via: 'get'
+    match '/search',  to: 'users#search',   via: 'get'
     root 'static_pages#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

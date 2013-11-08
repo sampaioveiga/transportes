@@ -15,9 +15,7 @@ class ReqpeopleController < ApplicationController
 		@reqperson = @user.reqpeople.new
 		@reqperson.user_id ||= current_user.id
 		@reqperson.local_partida ||= current_user.ulsneunit.id
-		@reqperson.data_partida ||= Time.now.tomorrow
 		@reqperson.local_retorno ||= current_user.ulsneunit.id
-		@reqperson.data_retorno ||= @reqperson.data_partida + 1.hour
 		@reqperson.condutor ||= current_user.nome
 		@reqperson.numero_passageiros ||= 1
 		@reqperson.estado ||= 0
@@ -49,6 +47,17 @@ class ReqpeopleController < ApplicationController
 			redirect_to [@user, @reqperson]
 		else
 			render 'edit'
+		end
+	end
+
+	def destroy
+		if (Time.now + 2.hour) < @reqperson.data_partida
+			flash[:success] = "Requisição eliminada"
+			@reqperson.destroy
+			redirect_to @user
+		else
+			flash[:error] = "Não pode eliminar esta requisição"
+			redirect_to [@user, @reqperson]
 		end
 	end
 

@@ -15,7 +15,6 @@ class ReqmaterialsController < ApplicationController
 		@reqmaterial = @user.reqmaterials.new
 		@reqmaterial.user_id ||= current_user.id
 		@reqmaterial.local_partida ||= current_user.ulsneunit.id
-		@reqmaterial.data_entrega ||= Time.now.tomorrow
 		@reqmaterial.estado ||= 0
 	end
 
@@ -28,7 +27,6 @@ class ReqmaterialsController < ApplicationController
 			flash[:alert] = "Requisição submetida. A aguardar validação"
 			redirect_to [@user, @reqmaterial]
 		else
-			flash[:alert] = @reqmaterial.local_entrega
 			render 'new'
 		end
 	end
@@ -46,6 +44,17 @@ class ReqmaterialsController < ApplicationController
 			redirect_to [@user, @reqmaterial]
 		else
 			render 'edit'
+		end
+	end
+
+	def destroy
+		if (Time.now + 2.hour) < @reqmaterial.data_entrega
+			flash[:success] = "Requisição eliminada"
+			@reqmaterial.destroy
+			redirect_to @user
+		else
+			flash[:error] = "Não pode eliminar esta requisição"
+			redirect_to [@user, @reqmaterial]
 		end
 	end
 
