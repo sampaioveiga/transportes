@@ -2,62 +2,79 @@
 
 <h1>Requisições de <%= @service.nome %></h1>
 <div class="span10 offset1">
-	<table class="table table-condensed">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Transporte de material</th>
-				<th>Transporte de pessoal</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @users.each do |user| %>
-				<tr>
-					<td><%= user.nome %></td>
-					<td>
+	<div class="accordion" id="accordion2">
+		<% @users.each do |user| %>
+			<div class="accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href=<%= "#" + user.id.to_s %>>
+						<%= user.nome %>
+					</a>
+				</div>
+				<div id=<%= user.id %> class="accordion-body collapse">
+					<div class="accordion-inner">
 						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>Transporte de material</th>
+									<th>Transporte de pessoal</th>
+								</tr>
+							</thead>
 							<tbody>
-								<% user.reqmaterials.each do |reqmaterial| %>
-									<% case reqmaterial.estado %>
-										<% when 1 %>
-											<% status = "success" %>
-										<% when 2 %>
-											<% status = "error" %>
-										<% else %>
-											<% status = "" %>
-									<% end %>
-									<tr class=<%= status %>>
-										<td><%= reqmaterial.assunto %></td>
-										<td><%= reqmaterial.data_entrega %></td>
-										<td><%= reqmaterial.local_entrega %></td>
-									</tr>
-								<% end %>
+								<tr>
+									<td>
+										<table class="table table-condensed">
+											<tbody>
+												<% user.reqmaterials.each do |reqmaterial| %>
+													<% case reqmaterial.estado %>
+														<% when 1 %>
+															<% status = "success" %>
+														<% when 2 %>
+															<% status = "error" %>
+														<% else %>
+															<% status = "" %>
+													<% end %>
+													<tr class=<%= status %>>
+														<td><%= reqmaterial.assunto %></td>
+														<td><%= reqmaterial.data_entrega %></td>
+														<td><%= reqmaterial.local_entrega %></td>
+													</tr>
+												<% end %>
+											</tbody>
+										</table>
+									</td>
+									<td>
+										<table class="table table-condensed">
+											<tbody>
+												<% user.reqpeople.each do |reqperson| %>
+													<% case reqperson.estado %>
+														<% when 1 %>
+															<% status = "success" %>
+														<% when 2 %>
+															<% status = "error" %>
+														<% else %>
+															<% status = "" %>
+													<% end %>
+													<tr class=<%= status %>>
+														<td><%= reqperson.assunto %></td>
+														<td><%= reqperson.data_partida %></td>
+														<td><%= reqperson.local_destino %></td>
+													</tr>
+												<% end %>
+											</tbody>
+										</table>
+									</td>
+								</tr>
 							</tbody>
 						</table>
-					</td>
-					<td>
-						<table class="table table-condensed">
-							<tbody>
-								<% user.reqpeople.each do |reqperson| %>
-									<% case reqperson.estado %>
-										<% when 1 %>
-											<% status = "success" %>
-										<% when 2 %>
-											<% status = "error" %>
-										<% else %>
-											<% status = "" %>
-									<% end %>
-									<tr class=<%= status %>>
-										<td><%= reqperson.assunto %></td>
-										<td><%= reqperson.data_partida %></td>
-										<td><%= reqperson.local_destino %></td>
-									</tr>
-								<% end %>
-							</tbody>
-						</table>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+        			</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+
+
+
+
+	
 </div>

@@ -2,80 +2,76 @@
 
 <h1>Requisições para <%= Date.today %></h1>
 <div class="span10 offset1">
-	<div class="well">
-		<h2>
-			Transporte de material
-			<small>
-				<%= link_to "Gerir", static_pages_reqmaterials_path %>
-				|
-				<%= link_to "Calendário", static_pages_all_reqmaterials_path %>
-			</small>
-		</h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Assunto</th>
-					<th>Requisitante</th>
-					<th>Urgente</th>
-					<th>Local partida</th>
-					<th>Local entrega</th>
-					<th>Data entrega</th>
-					<th>Comentario</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @reqmaterials.each do |reqmaterial| %>
-					<tr>
-						<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(reqmaterial.user, reqmaterial) %></td>
-						<td><%= reqmaterial.user.nome %></td>
-						<td><%= reqmaterial.urgente %></td>
-						<td><%= reqmaterial.local_partida %></td>
-						<td><%= reqmaterial.local_entrega %></td>
-						<td><%= reqmaterial.data_entrega %></td>
-						<td><%= reqmaterial.comentario %></td>
-					</tr>
-				<% end %>
-			</tbody>
-		</table>
-	</div>
-	<div class="well">
-		<h2>
-			Transporte de pessoal
-			<small>
-				<%= link_to "Gerir", static_pages_reqpeople_path %>
-				|
-				<%= link_to "Calendário", static_pages_all_reqpeople_path %>
-			</small>
-		</h2>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Assunto</th>
-					<th>Requisitante</th>
-					<th>Destino</th>
-					<th>Local partida</th>
-					<th>Data partida</th>
-					<th>Local retorno</th>
-					<th>Data Retorno</th>
-					<th>Comentario</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<% @reqpeople.each do |reqperson| %>
+	<div class="tabs">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#tabs-1" data-target="#tabs-1" data-toggle="tab">Requisições de transporte de material</a></li>
+			<li><a href="#tabs-2" data-target="#tabs-2" data-toggle="tab">Requisições de transporte de pessoal</a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active fade in" id="tabs-1">
+				<%= link_to "Gerir", static_pages_reqmaterials_path, class: 'btn' %>
+				<%= link_to "Calendário", static_pages_all_reqmaterials_path, class: 'btn' %>
+				<table class="table">
+					<thead>
 						<tr>
-							<td><%= link_to reqperson.assunto, user_reqperson_path(reqperson.user,reqperson) %></td>
-							<td><%= reqperson.user.nome %></td>
-							<td><%= reqperson.local_destino %></td>
-							<td><%= reqperson.local_partida %></td>
-							<td><%= reqperson.data_partida %></td>
-							<td><%= reqperson.local_retorno %></td>
-							<td><%= reqperson.data_retorno %></td>
-							<td><%= reqperson.comentario %></td>
+							<th>Assunto</th>
+							<th>Requisitante</th>
+							<th>Urgente</th>
+							<th>Local partida</th>
+							<th>Local entrega</th>
+							<th>Data entrega</th>
+							<th>Comentario</th>
 						</tr>
-					<% end %>
-				</tr>
-			</tbody>
-		</table>
+					</thead>
+					<tbody>
+						<% @reqmaterials.each do |reqmaterial| %>
+							<tr>
+								<td><%= link_to reqmaterial.assunto, user_reqmaterial_path(reqmaterial.user, reqmaterial) %></td>
+								<td><%= reqmaterial.user.nome %></td>
+								<td><%= reqmaterial.urgente %></td>
+								<td><%= reqmaterial.local_partida %></td>
+								<td><%= reqmaterial.local_entrega %></td>
+								<td><%= reqmaterial.data_entrega %></td>
+								<td><%= reqmaterial.comentario %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+			<div class="tab-pane" id="tabs-2">
+				<%= link_to "Gerir", static_pages_reqpeople_path, class: 'btn' %>
+				<%= link_to "Calendário", static_pages_all_reqpeople_path, class: 'btn' %>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Assunto</th>
+							<th>Requisitante</th>
+							<th>Destino</th>
+							<th>Local partida</th>
+							<th>Data partida</th>
+							<th>Local retorno</th>
+							<th>Data Retorno</th>
+							<th>Comentario</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<% @reqpeople.each do |reqperson| %>
+								<tr>
+									<td><%= link_to reqperson.assunto, user_reqperson_path(reqperson.user,reqperson) %></td>
+									<td><%= reqperson.user.nome %></td>
+									<td><%= reqperson.local_destino %></td>
+									<td><%= reqperson.local_partida %></td>
+									<td><%= reqperson.data_partida %></td>
+									<td><%= reqperson.local_retorno %></td>
+									<td><%= reqperson.data_retorno %></td>
+									<td><%= reqperson.comentario %></td>
+								</tr>
+							<% end %>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+        </div>
 	</div>
 </div>
