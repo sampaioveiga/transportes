@@ -8,11 +8,11 @@ class StaticPagesController < ApplicationController
 	end
 
 	def reqmaterials
-		@reqmaterials = Reqmaterial.where('data_entrega >= ?', DateTime.now.end_of_day).order('data_entrega')
+		@reqmaterials = Reqmaterial.where('data_entrega >= ?', DateTime.now.beginning_of_day).order('data_entrega')
 	end
 
 	def reqpeople
-		@reqpeople = Reqperson.where('data_partida >= ?', DateTime.now.end_of_day).order('data_partida')
+		@reqpeople = Reqperson.where('data_partida >= ?', DateTime.now.beginning_of_day).order('data_partida')
 	end
 
 	def all_reqmaterials

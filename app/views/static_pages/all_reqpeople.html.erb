@@ -1,6 +1,11 @@
 <% provide(:title, "Calendário") %>
 
+<h1>Requisições de transporte de pessoal</h1>
 <div class="span10 offset1">
+	<div class="btn-group">
+		<%= link_to "Mais requisições", static_pages_reqpeople_path, class: 'btn' %>
+		<%= link_to "Início", root_path, class: 'btn' %>
+	</div>
 	<div id='calendar'></div>
 </div>
 
